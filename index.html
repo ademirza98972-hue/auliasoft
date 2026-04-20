@@ -35,7 +35,8 @@
   .hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
   .mob-menu{display:none;background:#fff;border-bottom:1px solid var(--border);padding:1rem 6%}
   .mob-menu ul{list-style:none;display:flex;flex-direction:column}
-  .mob-menu ul a{color:var(--text);text-decoration:none;font-size:.93rem;padding:.7rem 0;display:block;border-bottom:1px solid var(--border)}
+  .mob-menu ul a{color:var(--text);text-decoration:none;font-size:.93rem;padding:.75rem 0;display:block;border-bottom:1px solid var(--border);font-weight:500}
+  .mob-menu ul a:last-child{border-bottom:none;color:var(--primary);font-weight:700}
   .mob-menu.open{display:block}
 
   /* ── HERO ── */
@@ -256,6 +257,8 @@
   .clbl{font-size:.8rem;color:rgba(255,255,255,.75);margin-top:.2rem}
 
   /* ── RESPONSIVE ── */
+
+  /* Tablet landscape 1024px */
   @media(max-width:1024px){
     .hero-cards{grid-template-columns:repeat(2,1fr)}
     .lay-grid{grid-template-columns:repeat(2,1fr)}
@@ -266,31 +269,156 @@
     .counter-grid{grid-template-columns:repeat(2,1fr)}
     .prod-grid{grid-template-columns:repeat(3,1fr)}
   }
+
+  /* Tablet portrait 900px */
   @media(max-width:900px){
     nav ul,.nav-cta{display:none}
     .hamburger{display:flex}
     .footer-grid{grid-template-columns:1fr 1fr}
     .berita-grid{grid-template-columns:repeat(2,1fr)}
     .prod-grid{grid-template-columns:repeat(2,1fr)}
+    .testi-grid{grid-template-columns:repeat(2,1fr)}
+    .about-img img{height:280px}
   }
+
+  /* Mobile 640px */
   @media(max-width:640px){
-    .hero-cards{grid-template-columns:1fr 1fr}
-    .lay-grid{grid-template-columns:1fr}
-    .berita-grid{grid-template-columns:1fr}
-    .footer-grid{grid-template-columns:1fr}
-    .fbot{flex-direction:column;gap:.3rem}
-    section{padding:50px 5%}
-    nav{padding:0 5%}
-    .hero{padding:56px 5% 50px}
+    /* layout */
+    section{padding:44px 4%}
+    nav{padding:0 4%;height:58px}
+    .hero{padding:50px 4% 44px}
+    .mob-menu{padding:1rem 4%}
+
+    /* hero */
+    h1{font-size:clamp(1.85rem,8vw,2.6rem);line-height:1.15}
+    .hero-desc{font-size:.93rem}
+    .hero-stats{gap:1.5rem}
+    .stat-num{font-size:1.5rem}
+    .hero-badge{font-size:.73rem}
+    .hero-btns{gap:.6rem}
+    .btn-primary,.btn-outline{padding:.75rem 1.4rem;font-size:.88rem;width:100%;text-align:center}
+    .hero-cards{grid-template-columns:1fr 1fr;gap:.7rem;margin-top:2rem}
+    .hcard{padding:1rem}
+    .hcard-icon{width:36px;height:36px}
+    .hcard-title{font-size:.82rem}
+    .hcard-sub{font-size:.72rem}
+
+    /* sections */
+    h2{font-size:clamp(1.45rem,6vw,1.9rem)}
+    .sec-sub{font-size:.88rem}
+
+    /* kategori */
+    .kat-grid{grid-template-columns:repeat(3,1fr);gap:.55rem}
+    .kat-item{padding:.75rem .5rem}
+    .kat-svg svg{width:22px;height:22px}
+    .kat-name{font-size:.68rem}
+
+    /* filter */
+    .filter-wrap{gap:.4rem}
+    .fbtn{font-size:.74rem;padding:.33rem .8rem}
+
+    /* produk */
+    .prod-grid{grid-template-columns:1fr 1fr;gap:.8rem}
+    .pcard-img{height:110px}
+    .pcard-img svg{width:50px;height:50px}
+    .pcard-body{padding:.9rem}
+    .pcard-name{font-size:.88rem}
+    .pcard-desc{font-size:.77rem}
+    .pcard-price{font-size:.84rem}
+    .b-order,.b-detail{padding:.35rem .7rem;font-size:.7rem}
+
+    /* layanan */
+    .lay-grid{grid-template-columns:1fr 1fr}
+    .lay-card{padding:1.1rem}
+    .lay-icon{width:36px;height:36px}
+    .lay-title{font-size:.88rem}
+    .lay-desc{font-size:.78rem}
+
+    /* cara kerja */
+    .steps-grid{grid-template-columns:1fr 1fr;gap:1.5rem}
+    .step-num{width:44px;height:44px;font-size:.95rem}
+    .step-title{font-size:.88rem}
+    .step-desc{font-size:.78rem}
+
+    /* counter */
+    .counter-strip{padding:36px 4%}
+    .counter-grid{grid-template-columns:repeat(2,1fr);gap:.8rem}
+    .cnum{font-size:1.9rem}
+    .clbl{font-size:.74rem}
+
+    /* promo */
+    .promo{flex-direction:column;text-align:center;padding:32px 4%;gap:1.4rem}
+    .promo-text h3{font-size:1.1rem}
+    .promo-text p{font-size:.82rem}
+    .promo-highlight span{font-size:1.3rem}
+
+    /* testimoni */
     .testi-grid{grid-template-columns:1fr}
-    .steps-grid{grid-template-columns:1fr}
-    .promo{flex-direction:column;text-align:center}
-    .counter-grid{grid-template-columns:repeat(2,1fr)}
-    .prod-grid{grid-template-columns:1fr 1fr}
+    .tcard{padding:1.2rem}
+    .tcard-text{font-size:.84rem}
+
+    /* tentang */
+    .about-wrap{grid-template-columns:1fr;gap:1.5rem}
+    .about-img img{height:220px;border-radius:12px}
+    .about-badge-float{padding:.7rem .9rem}
+    .about-badge-num{font-size:1.2rem}
+    .about-content p{font-size:.86rem}
+    .about-list li{font-size:.83rem}
+
+    /* faq */
+    .faq-wrap{margin:1.5rem auto 0}
+    .faq-q{padding:.9rem 1rem;font-size:.86rem}
+    .faq-a.open{padding:.2rem 1rem 1rem}
+    .faq-a p{font-size:.82rem}
+
+    /* berita */
+    .berita-grid{grid-template-columns:1fr}
+    .bcard-img{height:160px}
+
+    /* mitra */
+    .mchip{padding:.5rem 1.1rem;font-size:.78rem}
+
+    /* cta */
+    .cta-band{padding:50px 4%}
+    .cta-band h2{font-size:1.5rem}
+    .cta-band .sec-sub{font-size:.86rem}
+    .btn-white,.btn-outline-w{padding:.7rem 1.4rem;font-size:.86rem;width:100%;text-align:center}
+    .cta-btns{flex-direction:column;align-items:center;gap:.6rem}
+
+    /* footer */
+    .footer-grid{grid-template-columns:1fr 1fr;gap:1.5rem}
+    footer{padding:2.5rem 4% 1.2rem}
+    .fbot{flex-direction:column;gap:.3rem}
+    .fbot p{font-size:.74rem}
   }
-  @media(max-width:480px){
-    .hero-cards{grid-template-columns:1fr}
+
+  /* Small mobile 420px */
+  @media(max-width:420px){
+    nav{padding:0 4%}
+    .logo{font-size:1.1rem}
+    .logo-icon{width:26px;height:26px}
+
+    h1{font-size:clamp(1.65rem,9vw,2.1rem)}
+    .hero-cards{grid-template-columns:1fr 1fr}
+    .hero-btns{flex-direction:column}
+
     .prod-grid{grid-template-columns:1fr}
+    .pcard-img{height:120px}
+
+    .lay-grid{grid-template-columns:1fr}
+
+    .steps-grid{grid-template-columns:1fr}
+
+    .kat-grid{grid-template-columns:repeat(3,1fr)}
+
+    .footer-grid{grid-template-columns:1fr}
+    .counter-grid{grid-template-columns:repeat(2,1fr)}
+
+    .testi-grid{grid-template-columns:1fr}
+    .berita-grid{grid-template-columns:1fr}
+
+    section{padding:40px 4%}
+    .hero{padding:44px 4% 40px}
   }
 </style>
 </head>
@@ -307,7 +435,7 @@
       <path d="M25 11v10l-9 5V16l9-5z" fill="white" fill-opacity="0.9"/>
       <path d="M13 19.5l3 1.5 3-1.5" stroke="#1a5cff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-    <span>AULIASOFT</span>
+    Aulia<span>Soft</span>
   </a>
   <ul>
     <li><a href="#produk">Produk</a></li>
