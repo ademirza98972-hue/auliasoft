@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AuliaSoft — Digital Store</title>
+<link rel="icon" href="https://www.auliasoft.com/assets/images/favicon/favicon-5.png" sizes="32x32">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -23,16 +24,23 @@
 
   /* ── NAV ── */
   nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 6%;height:64px}
-  .logo{font-size:1.3rem;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-.02em;display:flex;align-items:center;gap:.45rem}
-  .logo span{color:var(--primary)}
-  .logo-icon{width:32px;height:32px;flex-shrink:0}
-  nav ul{display:flex;gap:2rem;list-style:none}
-  nav ul a{color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
+  .logo{text-decoration:none;display:flex;align-items:center}
+  nav ul{display:flex;gap:1.4rem;list-style:none;align-items:center}
+  nav ul a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:500;transition:color .2s;white-space:nowrap}
   nav ul a:hover{color:var(--primary)}
-  .nav-cta{background:var(--primary);color:#fff;padding:.5rem 1.4rem;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none;transition:background .2s}
+  /* dropdown */
+  .nav-drop{position:relative}
+  .nav-drop>a{display:flex;align-items:center;gap:.25rem}
+  .nav-drop>a::after{content:'';width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid var(--muted);transition:transform .2s}
+  .nav-drop:hover>a::after{transform:rotate(180deg);border-top-color:var(--primary)}
+  .drop-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;background:#fff;border:1px solid var(--border);border-radius:10px;padding:.5rem;min-width:180px;box-shadow:0 8px 24px rgba(0,0,0,.1);z-index:200}
+  .nav-drop:hover .drop-menu{display:flex;flex-direction:column;gap:.1rem}
+  .drop-menu a{padding:.55rem .9rem;border-radius:7px;font-size:.83rem;color:var(--text);font-weight:500;white-space:nowrap}
+  .drop-menu a:hover{background:var(--primary-light);color:var(--primary)}
+  .nav-cta{background:var(--primary);color:#fff;padding:.5rem 1.2rem;border-radius:8px;font-weight:700;font-size:.84rem;text-decoration:none;transition:background .2s;white-space:nowrap}
   .nav-cta:hover{background:var(--primary-dark)}
   .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-  .hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
   .mob-menu{display:none;background:#fff;border-bottom:1px solid var(--border);padding:1rem 6%}
   .mob-menu ul{list-style:none;display:flex;flex-direction:column}
   .mob-menu ul a{color:var(--text);text-decoration:none;font-size:.93rem;padding:.75rem 0;display:block;border-bottom:1px solid var(--border);font-weight:500}
@@ -112,7 +120,20 @@
   .pcard-body{padding:1.25rem;flex:1;display:flex;flex-direction:column}
   .pcard-cat{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--primary);margin-bottom:.35rem}
   .pcard-name{font-weight:800;font-size:1rem;color:var(--text);margin-bottom:.45rem;line-height:1.3}
-  .pcard-desc{font-size:.81rem;color:var(--muted);line-height:1.6;flex:1;margin-bottom:1rem}
+  .pcard-desc{font-size:.81rem;color:var(--muted);line-height:1.6;margin-bottom:.75rem}
+  /* PK: cara penggunaan */
+  .pcard-use{font-size:.75rem;color:var(--text);background:var(--light);border-radius:6px;padding:.45rem .7rem;margin-bottom:.75rem;line-height:1.5}
+  .pcard-use strong{color:var(--primary);font-weight:700}
+  /* PK: tags fitur */
+  .pcard-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.8rem}
+  .ptag{font-size:.67rem;font-weight:600;padding:.22rem .6rem;border-radius:100px;background:var(--primary-light);color:var(--primary)}
+  .ptag.green{background:#dcfce7;color:#166534}
+  .ptag.purple{background:#ede9fe;color:#5b21b6}
+  .ptag.orange{background:#ffedd5;color:#9a3412}
+  .ptag.yellow{background:#fef9c3;color:#854d0e}
+  /* PK: kompatibilitas */
+  .pcard-compat{font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);padding-top:.65rem;margin-bottom:.65rem;display:flex;align-items:center;gap:.4rem}
+  .pcard-compat svg{flex-shrink:0}
   .pcard-divider{height:1px;background:var(--border);margin-bottom:1rem}
   .pcard-foot{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-top:auto}
   .pcard-price{font-weight:800;font-size:.92rem;color:var(--green)}
@@ -122,6 +143,31 @@
   .b-detail{background:var(--light);border:1px solid var(--border);color:var(--muted);padding:.42rem .8rem;border-radius:7px;font-size:.75rem;font-weight:600;text-decoration:none;transition:all .2s}
   .b-detail:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light)}
   .hidden{display:none!important}
+
+  /* ── PERBANDINGAN KOMPETITOR ── */
+  .compare-bg{background:var(--light)}
+  .compare-table-wrap{overflow-x:auto;margin-top:2rem;border-radius:14px;border:1px solid var(--border)}
+  table.compare{width:100%;border-collapse:collapse;background:#fff;font-size:.85rem}
+  table.compare th{background:var(--primary);color:#fff;padding:.9rem 1.1rem;font-weight:700;font-size:.8rem;text-align:center;white-space:nowrap}
+  table.compare th:first-child{text-align:left;border-radius:13px 0 0 0}
+  table.compare th:last-child{border-radius:0 13px 0 0}
+  table.compare td{padding:.85rem 1.1rem;border-bottom:1px solid var(--border);text-align:center;color:var(--muted);font-size:.82rem}
+  table.compare td:first-child{text-align:left;font-weight:600;color:var(--text);font-size:.83rem}
+  table.compare tr:last-child td{border-bottom:none}
+  table.compare tr:hover td{background:var(--light)}
+  .td-yes{color:#059669;font-weight:700}
+  .td-no{color:#dc2626}
+  .td-hl{color:var(--primary);font-weight:700}
+  .col-aulia{background:#f0f5ff}
+
+  /* ── KETERSEDIAAN ── */
+  .avail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.8rem}
+  .avail-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.4rem;display:flex;gap:1rem;align-items:flex-start;transition:all .2s}
+  .avail-card:hover{border-color:var(--primary);background:var(--primary-light)}
+  .avail-icon{width:42px;height:42px;border-radius:10px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .avail-card:hover .avail-icon{background:#fff}
+  .avail-title{font-weight:700;font-size:.9rem;color:var(--text);margin-bottom:.3rem}
+  .avail-desc{font-size:.8rem;color:var(--muted);line-height:1.55}
 
   /* ── LAYANAN ── */
   .lay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.8rem}
@@ -268,6 +314,7 @@
     .about-wrap{grid-template-columns:1fr;gap:2rem}
     .counter-grid{grid-template-columns:repeat(2,1fr)}
     .prod-grid{grid-template-columns:repeat(3,1fr)}
+    .avail-grid{grid-template-columns:repeat(2,1fr)}
   }
 
   /* Tablet portrait 900px */
@@ -333,6 +380,8 @@
     .lay-icon{width:36px;height:36px}
     .lay-title{font-size:.88rem}
     .lay-desc{font-size:.78rem}
+    /* ketersediaan */
+    .avail-grid{grid-template-columns:1fr}
 
     /* cara kerja */
     .steps-grid{grid-template-columns:1fr 1fr;gap:1.5rem}
@@ -395,8 +444,6 @@
   /* Small mobile 420px */
   @media(max-width:420px){
     nav{padding:0 4%}
-    .logo{font-size:1.1rem}
-    .logo-icon{width:26px;height:26px}
 
     h1{font-size:clamp(1.65rem,9vw,2.1rem)}
     .hero-cards{grid-template-columns:1fr 1fr}
@@ -427,22 +474,23 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="logo">
-    <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="32" height="32" rx="8" fill="#1a5cff"/>
-      <path d="M16 6L7 11v10l9 5 9-5V11L16 6z" fill="white" fill-opacity="0.15" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
-      <path d="M16 6L7 11l9 5 9-5-9-5z" fill="white" fill-opacity="0.3"/>
-      <path d="M7 11v10l9 5V16L7 11z" fill="white" fill-opacity="0.5"/>
-      <path d="M25 11v10l-9 5V16l9-5z" fill="white" fill-opacity="0.9"/>
-      <path d="M13 19.5l3 1.5 3-1.5" stroke="#1a5cff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    Aulia<span>Soft</span>
+    <img src="https://www.auliasoft.com/assets/images/logo/logo.png" alt="AuliaSoft" style="height:32px;width:auto;display:block">
   </a>
   <ul>
     <li><a href="#produk">Produk</a></li>
-    <li><a href="#layanan">Layanan</a></li>
+    <li class="nav-drop">
+      <a href="#">Informasi</a>
+      <div class="drop-menu">
+        <a href="#layanan">Layanan & Keunggulan</a>
+        <a href="#ketersediaan">Kompatibilitas</a>
+        <a href="#cara-kerja">Cara Kerja</a>
+        <a href="#tentang">Tentang Kami</a>
+      </div>
+    </li>
     <li><a href="#mitra">Mitra</a></li>
+    <li><a href="#testimoni">Testimoni</a></li>
     <li><a href="#berita">Berita</a></li>
-    <li><a href="#kontak">Kontak</a></li>
+    <li><a href="#faq">FAQ</a></li>
   </ul>
   <a href="https://wa.me/6281241945881" class="nav-cta" target="_blank">Hubungi Kami</a>
   <div class="hamburger" onclick="toggleMob()"><span></span><span></span><span></span></div>
@@ -450,11 +498,16 @@
 <div class="mob-menu" id="mobMenu">
   <ul>
     <li><a href="#produk" onclick="closeMob()">Produk</a></li>
-    <li><a href="#layanan" onclick="closeMob()">Layanan</a></li>
+    <li><a href="#layanan" onclick="closeMob()">Layanan & Keunggulan</a></li>
+    <li><a href="#ketersediaan" onclick="closeMob()">Kompatibilitas</a></li>
+    <li><a href="#cara-kerja" onclick="closeMob()">Cara Kerja</a></li>
     <li><a href="#mitra" onclick="closeMob()">Mitra</a></li>
+    <li><a href="#testimoni" onclick="closeMob()">Testimoni</a></li>
     <li><a href="#berita" onclick="closeMob()">Berita</a></li>
+    <li><a href="#faq" onclick="closeMob()">FAQ</a></li>
+    <li><a href="#tentang" onclick="closeMob()">Tentang Kami</a></li>
     <li><a href="#kontak" onclick="closeMob()">Kontak</a></li>
-    <li><a href="https://wa.me/6281241945881" target="_blank">Hubungi via WhatsApp</a></li>
+    <li><a href="https://wa.me/6281241945881" target="_blank">💬 Hubungi via WhatsApp</a></li>
   </ul>
 </div>
 
@@ -588,8 +641,12 @@
     <div class="pcard" data-cat="KOPERASI BUMDES">
       <div class="pcard-img" style="background:#eff6ff"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="#dbeafe"/><path d="M22 44v-4a8 8 0 0 1 8-8h4a8 8 0 0 1 8 8v4" stroke="#1a5cff" stroke-width="2.5" stroke-linecap="round"/><circle cx="32" cy="22" r="6" stroke="#1a5cff" stroke-width="2.5"/><path d="M44 44v-3a8 8 0 0 0-6-7.7M20 44v-3a8 8 0 0 1 6-7.7" stroke="#1a5cff" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 2"/></svg></div>
       <div class="pcard-body">
-        <div class="pcard-cat">Koperasi · BUMDes</div><div class="pcard-name">Koperasi KSP</div>
+        <div class="pcard-cat">Koperasi · BUMDes</div>
+        <div class="pcard-name">Koperasi KSP</div>
         <div class="pcard-desc">Ekosistem digital hybrid untuk efisiensi operasional koperasi. Simpan pinjam & laporan keuangan otomatis dengan 4 aplikasi terintegrasi.</div>
+        <div class="pcard-tags"><span class="ptag">Simpan Pinjam</span><span class="ptag">Laporan Otomatis</span><span class="ptag green">Offline Ready</span><span class="ptag purple">4 Aplikasi</span></div>
+        <div class="pcard-use"><strong>Cara Pakai:</strong> Install di PC/laptop, input data anggota, langsung kelola transaksi & cetak laporan</div>
+        <div class="pcard-compat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Windows 7/8/10/11 · Min. RAM 2GB</div>
         <div class="pcard-divider"></div>
         <div class="pcard-foot"><div class="pcard-price">Rp 1.500.000</div><div class="pcard-btns"><a href="https://wa.me/6281241945881?text=Halo,%20saya%20ingin%20pesan%20Koperasi%20KSP" class="b-order" target="_blank">Pesan</a><a href="https://www.auliasoft.com/produk/koperasi-ksp" class="b-detail" target="_blank">Detail</a></div></div>
       </div>
@@ -598,8 +655,12 @@
     <div class="pcard" data-cat="KOPERASI">
       <div class="pcard-img" style="background:#eff6ff"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="#dbeafe"/><rect x="20" y="28" width="24" height="18" rx="3" stroke="#1a5cff" stroke-width="2.5"/><path d="M28 28v-4a4 4 0 0 1 8 0v4" stroke="#1a5cff" stroke-width="2.5" stroke-linecap="round"/><circle cx="32" cy="37" r="2.5" fill="#1a5cff"/><path d="M32 39.5v3" stroke="#1a5cff" stroke-width="2" stroke-linecap="round"/></svg></div>
       <div class="pcard-body">
-        <div class="pcard-cat">Koperasi</div><div class="pcard-name">Koperasi KSP Karyawan</div>
+        <div class="pcard-cat">Koperasi</div>
+        <div class="pcard-name">Koperasi KSP Karyawan</div>
         <div class="pcard-desc">Solusi digital hybrid terintegrasi payroll. Manajemen anggota, simpanan, dan pinjaman karyawan terhubung langsung dengan penggajian.</div>
+        <div class="pcard-tags"><span class="ptag">Integrasi Payroll</span><span class="ptag green">Potong Gaji Otomatis</span><span class="ptag purple">Multi User</span></div>
+        <div class="pcard-use"><strong>Cara Pakai:</strong> Sinkronisasi data karyawan dari HRD, atur cicilan, potongan gaji berjalan otomatis</div>
+        <div class="pcard-compat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Windows 7/8/10/11 · Min. RAM 2GB</div>
         <div class="pcard-divider"></div>
         <div class="pcard-foot"><div class="pcard-price">Rp 1.500.000</div><div class="pcard-btns"><a href="https://wa.me/6281241945881?text=Halo,%20saya%20ingin%20pesan%20KSP%20Karyawan" class="b-order" target="_blank">Pesan</a><a href="https://www.auliasoft.com/produk/koperasi-ksp-karyawan" class="b-detail" target="_blank">Detail</a></div></div>
       </div>
@@ -608,8 +669,12 @@
     <div class="pcard" data-cat="KOPERASI BUMDES">
       <div class="pcard-img" style="background:#f0fdf4"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="#dcfce7"/><path d="M32 18l12 6v8c0 7-5 12-12 14-7-2-12-7-12-14v-8l12-6z" stroke="#059669" stroke-width="2.5" stroke-linejoin="round"/><path d="M26 32l4 4 8-8" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="pcard-body">
-        <div class="pcard-cat">Koperasi · BUMDes</div><div class="pcard-name">Koperasi KSPPS BMT</div>
+        <div class="pcard-cat">Koperasi · BUMDes</div>
+        <div class="pcard-name">Koperasi KSPPS BMT</div>
         <div class="pcard-desc">Solusi digital hybrid untuk koperasi berbasis syariah. Efisien, aman, dan terintegrasi penuh sesuai standar operasional BMT.</div>
+        <div class="pcard-tags"><span class="ptag green">Syariah Compliant</span><span class="ptag">Akad Digital</span><span class="ptag purple">Laporan OJK</span></div>
+        <div class="pcard-use"><strong>Cara Pakai:</strong> Setting akad syariah, input anggota, kelola pembiayaan & simpanan sesuai prinsip Islam</div>
+        <div class="pcard-compat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Windows 7/8/10/11 · Min. RAM 2GB</div>
         <div class="pcard-divider"></div>
         <div class="pcard-foot"><div class="pcard-price">Rp 1.500.000</div><div class="pcard-btns"><a href="https://wa.me/6281241945881?text=Halo,%20saya%20ingin%20pesan%20KSPPS%20BMT" class="b-order" target="_blank">Pesan</a><a href="https://www.auliasoft.com/produk/koperasi-kspps-bmt" class="b-detail" target="_blank">Detail</a></div></div>
       </div>
@@ -618,8 +683,12 @@
     <div class="pcard" data-cat="MINI BANK KOPERASI">
       <div class="pcard-img" style="background:#faf5ff"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="#ede9fe"/><rect x="16" y="26" width="32" height="22" rx="3" stroke="#7c3aed" stroke-width="2.5"/><path d="M22 26v-4a10 10 0 0 1 20 0v4" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 2"/><path d="M32 33v6M29 36h6" stroke="#7c3aed" stroke-width="2.5" stroke-linecap="round"/></svg></div>
       <div class="pcard-body">
-        <div class="pcard-cat">Mini Bank · Koperasi</div><div class="pcard-name">Mini Bank KSPPS BMT</div>
+        <div class="pcard-cat">Mini Bank · Koperasi</div>
+        <div class="pcard-name">Mini Bank KSPPS BMT</div>
         <div class="pcard-desc">Core Banking System untuk KSP besar. Layanan setara bank: tabungan, kredit, dan laporan regulasi lengkap.</div>
+        <div class="pcard-tags"><span class="ptag purple">Core Banking</span><span class="ptag">Tabungan & Kredit</span><span class="ptag green">Regulasi Ready</span></div>
+        <div class="pcard-use"><strong>Cara Pakai:</strong> Setup produk tabungan & pinjaman, onboarding nasabah, proses transaksi harian via teller</div>
+        <div class="pcard-compat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Windows 10/11 · Min. RAM 4GB · LAN Support</div>
         <div class="pcard-divider"></div>
         <div class="pcard-foot"><div class="pcard-price">Rp 2.500.000</div><div class="pcard-btns"><a href="https://wa.me/6281241945881?text=Halo,%20saya%20ingin%20pesan%20Mini%20Bank%20KSPPS" class="b-order" target="_blank">Pesan</a><a href="https://www.auliasoft.com/produk/mini-bank-versi-kspps-bmt" class="b-detail" target="_blank">Detail</a></div></div>
       </div>
@@ -628,8 +697,12 @@
     <div class="pcard" data-cat="KOPDES">
       <div class="pcard-img" style="background:#fff7ed"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="#ffedd5"/><path d="M20 44V30l12-10 12 10v14H36v-8h-8v8H20z" stroke="#ea580c" stroke-width="2.5" stroke-linejoin="round"/><rect x="27" y="36" width="10" height="8" rx="1" stroke="#ea580c" stroke-width="2"/></svg></div>
       <div class="pcard-body">
-        <div class="pcard-cat">Kopdes KDMP</div><div class="pcard-name">Mini Market</div>
+        <div class="pcard-cat">Kopdes KDMP</div>
+        <div class="pcard-name">Mini Market</div>
         <div class="pcard-desc">Sistem POS desktop untuk minimarket modern. Inventory, laporan penjualan harian, dan manajemen supplier lengkap.</div>
+        <div class="pcard-tags"><span class="ptag orange">POS Kasir</span><span class="ptag">Manajemen Stok</span><span class="ptag green">Barcode Support</span></div>
+        <div class="pcard-use"><strong>Cara Pakai:</strong> Input produk + harga, scan barcode saat transaksi, cek laporan stok & penjualan otomatis</div>
+        <div class="pcard-compat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Windows 7/8/10/11 · Printer Struk · Scanner</div>
         <div class="pcard-divider"></div>
         <div class="pcard-foot"><div class="pcard-price">Rp 1.500.000</div><div class="pcard-btns"><a href="https://wa.me/6281241945881?text=Halo,%20saya%20ingin%20pesan%20Mini%20Market" class="b-order" target="_blank">Pesan</a><a href="https://www.auliasoft.com/produk/mini-market" class="b-detail" target="_blank">Detail</a></div></div>
       </div>
@@ -638,8 +711,12 @@
     <div class="pcard" data-cat="KOPDES">
       <div class="pcard-img" style="background:#fff7ed"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="#ffedd5"/><path d="M18 44V22h28v22H18z" stroke="#ea580c" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 22v-4h16v4" stroke="#ea580c" stroke-width="2" stroke-linecap="round"/><line x1="24" y1="30" x2="40" y2="30" stroke="#ea580c" stroke-width="2" stroke-linecap="round"/><line x1="24" y1="36" x2="34" y2="36" stroke="#ea580c" stroke-width="2" stroke-linecap="round"/></svg></div>
       <div class="pcard-body">
-        <div class="pcard-cat">Kopdes KDMP</div><div class="pcard-name">Toko Sembako</div>
+        <div class="pcard-cat">Kopdes KDMP</div>
+        <div class="pcard-name">Toko Sembako</div>
         <div class="pcard-desc">Sistem manajemen toko kelontong dan sembako. Stok, hutang pelanggan, dan laporan harian mudah digunakan.</div>
+        <div class="pcard-tags"><span class="ptag orange">Kelola Hutang</span><span class="ptag">Stok Barang</span><span class="ptag green">Laporan Harian</span></div>
+        <div class="pcard-use"><strong>Cara Pakai:</strong> Catat pembelian & penjualan, kelola piutang pelanggan, pantau stok yang hampir habis</div>
+        <div class="pcard-compat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Windows 7/8/10/11 · Min. RAM 1GB</div>
         <div class="pcard-divider"></div>
         <div class="pcard-foot"><div class="pcard-price">Rp 1.500.000</div><div class="pcard-btns"><a href="https://wa.me/6281241945881?text=Halo,%20saya%20ingin%20pesan%20Toko%20Sembako" class="b-order" target="_blank">Pesan</a><a href="https://www.auliasoft.com/produk/toko-sembako" class="b-detail" target="_blank">Detail</a></div></div>
       </div>
@@ -648,8 +725,12 @@
     <div class="pcard" data-cat="TOKO">
       <div class="pcard-img" style="background:#eff6ff"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="#dbeafe"/><path d="M14 24l4-8h28l4 8H14z" stroke="#1a5cff" stroke-width="2.5" stroke-linejoin="round"/><rect x="14" y="24" width="36" height="22" rx="2" stroke="#1a5cff" stroke-width="2.5"/><rect x="26" y="34" width="12" height="12" rx="1" stroke="#1a5cff" stroke-width="2"/></svg></div>
       <div class="pcard-body">
-        <div class="pcard-cat">Toko/Warung</div><div class="pcard-name">Toko Kelontong</div>
+        <div class="pcard-cat">Toko/Warung</div>
+        <div class="pcard-name">Toko Kelontong</div>
         <div class="pcard-desc">Sistem kasir warung kelontong dengan fitur kredit/hutang pelanggan, stok barang, dan laporan usaha sederhana.</div>
+        <div class="pcard-tags"><span class="ptag">Kasir Digital</span><span class="ptag">Kredit Pelanggan</span><span class="ptag green">Mudah Dipakai</span></div>
+        <div class="pcard-use"><strong>Cara Pakai:</strong> Catat transaksi jual-beli, input hutang pelanggan, lihat rekap untung-rugi harian</div>
+        <div class="pcard-compat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Windows 7/8/10/11 · Min. RAM 1GB</div>
         <div class="pcard-divider"></div>
         <div class="pcard-foot"><div class="pcard-price">Rp 1.500.000</div><div class="pcard-btns"><a href="https://wa.me/6281241945881?text=Halo,%20saya%20ingin%20pesan%20Toko%20Kelontong" class="b-order" target="_blank">Pesan</a><a href="https://www.auliasoft.com/produk/toko-kelontong" class="b-detail" target="_blank">Detail</a></div></div>
       </div>
@@ -658,8 +739,12 @@
     <div class="pcard" data-cat="TOKO">
       <div class="pcard-img" style="background:#eff6ff"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="#dbeafe"/><rect x="16" y="20" width="32" height="26" rx="3" stroke="#1a5cff" stroke-width="2.5"/><line x1="16" y1="30" x2="48" y2="30" stroke="#1a5cff" stroke-width="2"/><line x1="28" y1="20" x2="28" y2="46" stroke="#1a5cff" stroke-width="2"/><circle cx="22" cy="38" r="2.5" fill="#1a5cff"/></svg></div>
       <div class="pcard-body">
-        <div class="pcard-cat">Toko/Warung</div><div class="pcard-name">Toko Optik</div>
+        <div class="pcard-cat">Toko/Warung</div>
+        <div class="pcard-name">Toko Optik</div>
         <div class="pcard-desc">Sistem POS toko kacamata. Prescription management, lensa tracking, dan manajemen data pelanggan terintegrasi.</div>
+        <div class="pcard-tags"><span class="ptag">Resep Kacamata</span><span class="ptag purple">Tracking Lensa</span><span class="ptag green">Database Pasien</span></div>
+        <div class="pcard-use"><strong>Cara Pakai:</strong> Input data resep dokter, catat jenis lensa & frame, kelola order & notifikasi jadi</div>
+        <div class="pcard-compat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Windows 7/8/10/11 · Min. RAM 2GB</div>
         <div class="pcard-divider"></div>
         <div class="pcard-foot"><div class="pcard-price">Rp 1.500.000</div><div class="pcard-btns"><a href="https://wa.me/6281241945881?text=Halo,%20saya%20ingin%20pesan%20Toko%20Optik" class="b-order" target="_blank">Pesan</a><a href="https://www.auliasoft.com/produk/toko-optik" class="b-detail" target="_blank">Detail</a></div></div>
       </div>
@@ -668,8 +753,12 @@
     <div class="pcard" data-cat="TOKO">
       <div class="pcard-img" style="background:#eff6ff"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="#dbeafe"/><rect x="20" y="18" width="24" height="30" rx="4" stroke="#1a5cff" stroke-width="2.5"/><line x1="26" y1="24" x2="38" y2="24" stroke="#1a5cff" stroke-width="2" stroke-linecap="round"/><line x1="26" y1="30" x2="38" y2="30" stroke="#1a5cff" stroke-width="2" stroke-linecap="round"/><circle cx="32" cy="40" r="2.5" fill="#1a5cff"/></svg></div>
       <div class="pcard-body">
-        <div class="pcard-cat">Toko/Warung</div><div class="pcard-name">Toko Counter HP</div>
+        <div class="pcard-cat">Toko/Warung</div>
+        <div class="pcard-name">Toko Counter HP</div>
         <div class="pcard-desc">Sistem POS counter handphone. Device tracking, manajemen IMEI, servis order, dan stok aksesori dalam satu aplikasi.</div>
+        <div class="pcard-tags"><span class="ptag">IMEI Tracking</span><span class="ptag purple">Servis Order</span><span class="ptag green">Stok Aksesori</span></div>
+        <div class="pcard-use"><strong>Cara Pakai:</strong> Scan IMEI saat terima HP, catat servis masuk/keluar, pantau stok aksesori & penjualan</div>
+        <div class="pcard-compat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Windows 7/8/10/11 · Scanner IMEI support</div>
         <div class="pcard-divider"></div>
         <div class="pcard-foot"><div class="pcard-price">Rp 1.500.000</div><div class="pcard-btns"><a href="https://wa.me/6281241945881?text=Halo,%20saya%20ingin%20pesan%20Toko%20Counter%20HP" class="b-order" target="_blank">Pesan</a><a href="https://www.auliasoft.com/produk/aplikasi-toko-counter-hp" class="b-detail" target="_blank">Detail</a></div></div>
       </div>
@@ -678,8 +767,12 @@
     <div class="pcard" data-cat="LKM">
       <div class="pcard-img" style="background:#f0fdf4"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="#dcfce7"/><rect x="14" y="22" width="36" height="24" rx="3" stroke="#059669" stroke-width="2.5"/><line x1="14" y1="31" x2="50" y2="31" stroke="#059669" stroke-width="2"/><circle cx="22" cy="27" r="2" fill="#059669"/><path d="M30 27h12M30 38h8" stroke="#059669" stroke-width="2" stroke-linecap="round"/></svg></div>
       <div class="pcard-body">
-        <div class="pcard-cat">LKM/LKMS</div><div class="pcard-name">Aplikasi LKM Syariah</div>
+        <div class="pcard-cat">LKM/LKMS</div>
+        <div class="pcard-name">Aplikasi LKM Syariah</div>
         <div class="pcard-desc">Sistem keuangan untuk Lembaga Keuangan Mikro berbasis syariah. Pembiayaan, tabungan, dan laporan OJK lengkap.</div>
+        <div class="pcard-tags"><span class="ptag green">Syariah</span><span class="ptag">Pembiayaan Mikro</span><span class="ptag purple">Laporan OJK</span></div>
+        <div class="pcard-use"><strong>Cara Pakai:</strong> Daftarkan nasabah, kelola akad pembiayaan & simpanan, ekspor laporan untuk OJK</div>
+        <div class="pcard-compat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Windows 7/8/10/11 · Min. RAM 2GB</div>
         <div class="pcard-divider"></div>
         <div class="pcard-foot"><div class="pcard-price">Rp 1.500.000</div><div class="pcard-btns"><a href="https://wa.me/6281241945881?text=Halo,%20saya%20ingin%20pesan%20LKM%20Syariah" class="b-order" target="_blank">Pesan</a><a href="https://www.auliasoft.com/kategori-produk/lkmlkms" class="b-detail" target="_blank">Detail</a></div></div>
       </div>
@@ -688,8 +781,12 @@
     <div class="pcard" data-cat="BUMDES">
       <div class="pcard-img" style="background:#faf5ff"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="#ede9fe"/><path d="M18 46V30l14-12 14 12v16H38V36H26v10H18z" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/><path d="M28 46v-8h8v8" stroke="#7c3aed" stroke-width="2" stroke-linejoin="round"/></svg></div>
       <div class="pcard-body">
-        <div class="pcard-cat">BUMDes</div><div class="pcard-name">Aplikasi BUMDes</div>
+        <div class="pcard-cat">BUMDes</div>
+        <div class="pcard-name">Aplikasi BUMDes</div>
         <div class="pcard-desc">Sistem manajemen Badan Usaha Milik Desa. Unit usaha, laporan keuangan desa, dan dashboard terintegrasi.</div>
+        <div class="pcard-tags"><span class="ptag purple">Multi Unit Usaha</span><span class="ptag">Aset Desa</span><span class="ptag green">Dashboard Desa</span></div>
+        <div class="pcard-use"><strong>Cara Pakai:</strong> Buat unit usaha desa, catat modal & pendapatan tiap unit, lihat neraca keuangan desa</div>
+        <div class="pcard-compat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Windows 7/8/10/11 · Min. RAM 2GB</div>
         <div class="pcard-divider"></div>
         <div class="pcard-foot"><div class="pcard-price">Rp 1.500.000</div><div class="pcard-btns"><a href="https://wa.me/6281241945881?text=Halo,%20saya%20ingin%20pesan%20BUMDes" class="b-order" target="_blank">Pesan</a><a href="https://www.auliasoft.com/kategori-produk/bumdes" class="b-detail" target="_blank">Detail</a></div></div>
       </div>
@@ -698,8 +795,12 @@
     <div class="pcard" data-cat="LAZIS">
       <div class="pcard-img" style="background:#fef9c3"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="#fef9c3"/><path d="M32 18c-6 0-12 5-12 11 0 8 12 17 12 17s12-9 12-17c0-6-6-11-12-11z" stroke="#ca8a04" stroke-width="2.5" stroke-linejoin="round"/><path d="M28 30l3 3 5-5" stroke="#ca8a04" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="pcard-body">
-        <div class="pcard-cat">LAZIS</div><div class="pcard-name">Aplikasi LAZIS</div>
+        <div class="pcard-cat">LAZIS</div>
+        <div class="pcard-name">Aplikasi LAZIS</div>
         <div class="pcard-desc">Sistem pengelolaan Zakat, Infaq, dan Shadaqah. Donatur, penyaluran, dan laporan keuangan syariah yang transparan.</div>
+        <div class="pcard-tags"><span class="ptag yellow">ZIS Management</span><span class="ptag green">Donatur Database</span><span class="ptag">Laporan Transparan</span></div>
+        <div class="pcard-use"><strong>Cara Pakai:</strong> Daftarkan donatur, catat penerimaan ZIS, kelola penyaluran, cetak laporan pertanggungjawaban</div>
+        <div class="pcard-compat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Windows 7/8/10/11 · Min. RAM 1GB</div>
         <div class="pcard-divider"></div>
         <div class="pcard-foot"><div class="pcard-price">Rp 1.500.000</div><div class="pcard-btns"><a href="https://wa.me/6281241945881?text=Halo,%20saya%20ingin%20pesan%20LAZIS" class="b-order" target="_blank">Pesan</a><a href="https://www.auliasoft.com/kategori-produk/lazis" class="b-detail" target="_blank">Detail</a></div></div>
       </div>
@@ -753,7 +854,142 @@
 
 <div class="div"></div>
 
-<!-- MITRA — full width -->
+<!-- PERBANDINGAN KOMPETITOR -->
+<section class="compare-bg center">
+  <div class="reveal">
+    <div class="sec-label">Perbandingan Produk</div>
+    <h2>AuliaSoft vs <em>Software Lain</em></h2>
+    <p class="sec-sub">Kenapa ribuan bisnis di Indonesia memilih AuliaSoft dibanding alternatif lain?</p>
+  </div>
+  <div class="compare-table-wrap reveal">
+    <table class="compare">
+      <thead>
+        <tr>
+          <th>Fitur</th>
+          <th class="col-aulia">AuliaSoft ✦</th>
+          <th>Software A</th>
+          <th>Software B</th>
+          <th>Manual/Excel</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Harga Terjangkau (mulai 1,5 juta)</td>
+          <td class="col-aulia td-yes">✔ Ya</td>
+          <td class="td-no">✘ Mahal</td>
+          <td class="td-no">✘ Berlangganan</td>
+          <td class="td-yes">✔ Gratis</td>
+        </tr>
+        <tr>
+          <td>Bisa Offline (tanpa internet)</td>
+          <td class="col-aulia td-yes">✔ Ya</td>
+          <td class="td-no">✘ Butuh Internet</td>
+          <td class="td-no">✘ Cloud only</td>
+          <td class="td-yes">✔ Ya</td>
+        </tr>
+        <tr>
+          <td>Garansi & Support 1,5 Tahun</td>
+          <td class="col-aulia td-yes">✔ Gratis</td>
+          <td class="td-no">✘ Berbayar</td>
+          <td>⚠ Terbatas</td>
+          <td class="td-no">✘ Tidak ada</td>
+        </tr>
+        <tr>
+          <td>Khusus Koperasi & LKM Indonesia</td>
+          <td class="col-aulia td-yes">✔ Ya</td>
+          <td class="td-no">✘ Umum</td>
+          <td class="td-no">✘ Umum</td>
+          <td class="td-no">✘ Tidak ada</td>
+        </tr>
+        <tr>
+          <td>Laporan Regulasi OJK / Kemenkop</td>
+          <td class="col-aulia td-yes">✔ Otomatis</td>
+          <td>⚠ Manual</td>
+          <td class="td-no">✘ Tidak ada</td>
+          <td class="td-no">✘ Tidak ada</td>
+        </tr>
+        <tr>
+          <td>Syariah Compliant (BMT/KSPPS)</td>
+          <td class="col-aulia td-yes">✔ Ya</td>
+          <td class="td-no">✘ Tidak</td>
+          <td class="td-no">✘ Tidak</td>
+          <td class="td-no">✘ Tidak</td>
+        </tr>
+        <tr>
+          <td>Instalasi & Pelatihan Langsung</td>
+          <td class="col-aulia td-yes">✔ Termasuk</td>
+          <td class="td-no">✘ Biaya tambahan</td>
+          <td>⚠ Online saja</td>
+          <td class="td-no">✘ Tidak ada</td>
+        </tr>
+        <tr>
+          <td>Tidak Ada Biaya Langganan Bulanan</td>
+          <td class="col-aulia td-yes">✔ Bayar Sekali</td>
+          <td class="td-no">✘ Bulanan</td>
+          <td class="td-no">✘ Bulanan</td>
+          <td class="td-yes">✔ Ya</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- KETERSEDIAAN & KOMPATIBILITAS -->
+<section id="ketersediaan">
+  <div class="reveal">
+    <div class="sec-label">Ketersediaan & Kompatibilitas</div>
+    <h2>Tersedia di <em>Mana Saja?</em></h2>
+    <p class="sec-sub">Semua produk AuliaSoft dirancang agar mudah diakses dan kompatibel dengan perangkat yang sudah Anda miliki</p>
+  </div>
+  <div class="avail-grid reveal">
+    <div class="avail-card">
+      <div class="avail-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a5cff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <div>
+        <div class="avail-title">Windows Desktop</div>
+        <div class="avail-desc">Kompatibel dengan Windows 7, 8, 10, dan 11. Berjalan lancar di PC maupun laptop dengan spesifikasi minimal (RAM 1–4GB tergantung produk).</div>
+      </div>
+    </div>
+    <div class="avail-card">
+      <div class="avail-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a5cff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+      <div>
+        <div class="avail-title">Offline First</div>
+        <div class="avail-desc">Semua produk dapat berjalan tanpa koneksi internet. Internet hanya diperlukan untuk sinkronisasi cloud dan update aplikasi berkala.</div>
+      </div>
+    </div>
+    <div class="avail-card">
+      <div class="avail-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a5cff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div>
+        <div class="avail-title">Jaringan LAN / Multi-PC</div>
+        <div class="avail-desc">Produk Mini Bank & KSP mendukung jaringan LAN untuk penggunaan multi-teller dan multi-user dalam satu kantor secara bersamaan.</div>
+      </div>
+    </div>
+    <div class="avail-card">
+      <div class="avail-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a5cff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+      <div>
+        <div class="avail-title">Akses Mobile (Monitoring)</div>
+        <div class="avail-desc">Pemilik usaha dapat memantau laporan dan dashboard dari smartphone melalui fitur web monitoring yang tersedia di produk tertentu.</div>
+      </div>
+    </div>
+    <div class="avail-card">
+      <div class="avail-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a5cff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M8 4h8"/><line x1="12" y1="4" x2="12" y2="20"/><path d="M8 20h8"/><path d="M6 15H4.5a2.5 2.5 0 0 0 0 5H6"/><path d="M18 15h1.5a2.5 2.5 0 0 1 0 5H18"/></svg></div>
+      <div>
+        <div class="avail-title">Printer & Hardware Kasir</div>
+        <div class="avail-desc">Terintegrasi dengan printer struk thermal, barcode scanner, dan cash drawer. Paket hardware tersedia untuk pembelian bundling bersama software.</div>
+      </div>
+    </div>
+    <div class="avail-card">
+      <div class="avail-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a5cff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div>
+        <div class="avail-title">Backup & Keamanan Data</div>
+        <div class="avail-desc">Dilengkapi fitur backup otomatis harian ke folder lokal atau USB. Data terenkripsi dan tidak tersimpan di server pihak ketiga, privasi terjaga penuh.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
 <section id="mitra" class="mitra-bg center">
   <div class="reveal">
     <div class="sec-label">Ekosistem</div>
@@ -1098,14 +1334,7 @@
   <div class="footer-grid">
     <div>
       <a href="#" class="flogo">
-        <svg style="width:28px;height:28px;border-radius:6px;vertical-align:middle;margin-right:.4rem;flex-shrink:0" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="32" height="32" rx="8" fill="#1a5cff"/>
-          <path d="M16 6L7 11v10l9 5 9-5V11L16 6z" fill="white" fill-opacity="0.15" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
-          <path d="M16 6L7 11l9 5 9-5-9-5z" fill="white" fill-opacity="0.3"/>
-          <path d="M7 11v10l9 5V16L7 11z" fill="white" fill-opacity="0.5"/>
-          <path d="M25 11v10l-9 5V16l9-5z" fill="white" fill-opacity="0.9"/>
-          <path d="M13 19.5l3 1.5 3-1.5" stroke="#1a5cff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>Aulia<span>Soft</span>
+        <img src="https://www.auliasoft.com/assets/images/logo/logo.png" alt="AuliaSoft" style="height:28px;width:auto;display:block;filter:brightness(0) invert(1)">
       </a>
       <p class="fdesc">PT AuliaSoft Digital Store — Solusi aplikasi bisnis terpercaya untuk UMKM dan lembaga keuangan di seluruh Indonesia.</p>
       <p class="ftel">📞 0812-4194-5881</p>
