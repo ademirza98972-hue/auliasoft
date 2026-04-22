@@ -368,6 +368,7 @@ footer{background:#0f172a;padding:3rem 5% 1.5rem}
     <li><a href="#fitur">Fitur</a></li>
     <li><a href="#paket">Harga</a></li>
     <li><a href="#cara-pakai">Cara Pakai</a></li>
+    <li><a href="#usecase">Use Case</a></li>
     <li><a href="#perbandingan">Perbandingan</a></li>
     <li><a href="#testimoni">Testimoni</a></li>
     <li><a href="#faq">FAQ</a></li>
@@ -434,6 +435,196 @@ footer{background:#0f172a;padding:3rem 5% 1.5rem}
     </div>
   </div>
 </section>
+
+<div class="div"></div>
+
+<!-- USE CASE DIAGRAM -->
+<section id="usecase" style="background:var(--light)">
+  <div class="reveal center">
+    <span class="sec-tag">Sistem Aplikasi</span>
+    <h2>Use Case Diagram <em>AuliaSoft E-POS</em></h2>
+    <p class="sec-sub">Gambaran interaksi pengguna dengan sistem aplikasi kasir dan toko online</p>
+  </div>
+
+  <div class="reveal" style="margin-top:2rem;overflow-x:auto">
+    <div style="min-width:700px;max-width:960px;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,.06)">
+      <svg viewBox="0 0 900 780" width="100%" xmlns="[w3.org](http://www.w3.org/2000/svg)" font-family="Plus Jakarta Sans, sans-serif">
+
+        <!-- System Boundary Box -->
+        <rect x="160" y="30" width="580" height="720" rx="12" ry="12"
+              fill="#f5f7fb" stroke="#1a3c6e" stroke-width="2" stroke-dasharray="8,4"/>
+        <text x="450" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#1a3c6e">Sistem AuliaSoft E-POS</text>
+
+        <!-- ===== ACTORS ===== -->
+
+        <!-- Kasir (kiri atas) -->
+        <g transform="translate(60,120)">
+          <circle cx="0" cy="0" r="18" fill="none" stroke="#1a3c6e" stroke-width="2"/>
+          <line x1="0" y1="18" x2="0" y2="55" stroke="#1a3c6e" stroke-width="2"/>
+          <line x1="-22" y1="35" x2="22" y2="35" stroke="#1a3c6e" stroke-width="2"/>
+          <line x1="0" y1="55" x2="-18" y2="80" stroke="#1a3c6e" stroke-width="2"/>
+          <line x1="0" y1="55" x2="18" y2="80" stroke="#1a3c6e" stroke-width="2"/>
+          <text x="0" y="98" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">Kasir</text>
+        </g>
+
+        <!-- Pemilik Toko (kiri tengah) -->
+        <g transform="translate(60,360)">
+          <circle cx="0" cy="0" r="18" fill="none" stroke="#1a3c6e" stroke-width="2"/>
+          <line x1="0" y1="18" x2="0" y2="55" stroke="#1a3c6e" stroke-width="2"/>
+          <line x1="-22" y1="35" x2="22" y2="35" stroke="#1a3c6e" stroke-width="2"/>
+          <line x1="0" y1="55" x2="-18" y2="80" stroke="#1a3c6e" stroke-width="2"/>
+          <line x1="0" y1="55" x2="18" y2="80" stroke="#1a3c6e" stroke-width="2"/>
+          <text x="0" y="98" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">Pemilik</text>
+          <text x="0" y="112" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">Toko</text>
+        </g>
+
+        <!-- Admin (kanan) -->
+        <g transform="translate(840,380)">
+          <circle cx="0" cy="0" r="18" fill="none" stroke="#e8820c" stroke-width="2"/>
+          <line x1="0" y1="18" x2="0" y2="55" stroke="#e8820c" stroke-width="2"/>
+          <line x1="-22" y1="35" x2="22" y2="35" stroke="#e8820c" stroke-width="2"/>
+          <line x1="0" y1="55" x2="-18" y2="80" stroke="#e8820c" stroke-width="2"/>
+          <line x1="0" y1="55" x2="18" y2="80" stroke="#e8820c" stroke-width="2"/>
+          <text x="0" y="98" text-anchor="middle" font-size="12" font-weight="600" fill="#e8820c">Admin</text>
+        </g>
+
+        <!-- Pelanggan (kiri bawah) -->
+        <g transform="translate(60,600)">
+          <circle cx="0" cy="0" r="18" fill="none" stroke="#059669" stroke-width="2"/>
+          <line x1="0" y1="18" x2="0" y2="55" stroke="#059669" stroke-width="2"/>
+          <line x1="-22" y1="35" x2="22" y2="35" stroke="#059669" stroke-width="2"/>
+          <line x1="0" y1="55" x2="-18" y2="80" stroke="#059669" stroke-width="2"/>
+          <line x1="0" y1="55" x2="18" y2="80" stroke="#059669" stroke-width="2"/>
+          <text x="0" y="98" text-anchor="middle" font-size="12" font-weight="600" fill="#059669">Pelanggan</text>
+        </g>
+
+        <!-- ===== USE CASES ===== -->
+
+        <!-- UC1: Login -->
+        <ellipse cx="450" cy="75" rx="100" ry="24" fill="#fff" stroke="#1a3c6e" stroke-width="1.5"/>
+        <text x="450" y="80" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">Login</text>
+
+        <!-- UC2: Transaksi Penjualan -->
+        <ellipse cx="350" cy="145" rx="110" ry="24" fill="#fff" stroke="#1a3c6e" stroke-width="1.5"/>
+        <text x="350" y="150" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">Transaksi Penjualan</text>
+
+        <!-- UC3: Pembayaran Digital (extend dari UC2) -->
+        <ellipse cx="610" cy="145" rx="110" ry="24" fill="#edf0f8" stroke="#1a3c6e" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="610" y="143" text-anchor="middle" font-size="11" fill="#1a3c6e">Pembayaran Digital</text>
+        <text x="610" y="156" text-anchor="middle" font-size="10" fill="#64748b">(QRIS / Transfer)</text>
+
+        <!-- UC4: Kelola Produk -->
+        <ellipse cx="350" cy="220" rx="110" ry="24" fill="#fff" stroke="#1a3c6e" stroke-width="1.5"/>
+        <text x="350" y="225" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">Kelola Data Produk</text>
+
+        <!-- UC5: Manajemen Stok/Inventori -->
+        <ellipse cx="350" cy="295" rx="110" ry="24" fill="#fff" stroke="#1a3c6e" stroke-width="1.5"/>
+        <text x="350" y="300" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">Manajemen Inventori</text>
+
+        <!-- UC6: Kelola Pelanggan / CRM -->
+        <ellipse cx="350" cy="370" rx="110" ry="24" fill="#fff" stroke="#1a3c6e" stroke-width="1.5"/>
+        <text x="350" y="375" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">Kelola CRM Pelanggan</text>
+
+        <!-- UC7: Toko Online -->
+        <ellipse cx="580" cy="295" rx="110" ry="24" fill="#fff" stroke="#1a3c6e" stroke-width="1.5"/>
+        <text x="580" y="300" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">Toko Online</text>
+
+        <!-- UC8: Order Online -->
+        <ellipse cx="580" cy="370" rx="110" ry="24" fill="#fff" stroke="#1a3c6e" stroke-width="1.5"/>
+        <text x="580" y="375" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">Order Online</text>
+
+        <!-- UC9: Laporan Penjualan -->
+        <ellipse cx="450" cy="455" rx="120" ry="24" fill="#fff" stroke="#1a3c6e" stroke-width="1.5"/>
+        <text x="450" y="460" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">Lihat Laporan Penjualan</text>
+
+        <!-- UC10: Laporan Keuangan -->
+        <ellipse cx="450" cy="530" rx="120" ry="24" fill="#fff" stroke="#1a3c6e" stroke-width="1.5"/>
+        <text x="450" y="535" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">Laporan Keuangan</text>
+
+        <!-- UC11: Manajemen Karyawan -->
+        <ellipse cx="450" cy="605" rx="120" ry="24" fill="#fff" stroke="#1a3c6e" stroke-width="1.5"/>
+        <text x="450" y="610" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">Manajemen Karyawan</text>
+
+        <!-- UC12: Kelola Pengguna -->
+        <ellipse cx="620" cy="530" rx="110" ry="24" fill="#fff" stroke="#e8820c" stroke-width="1.5"/>
+        <text x="620" y="535" text-anchor="middle" font-size="12" font-weight="600" fill="#e8820c">Kelola Pengguna</text>
+
+        <!-- UC13: Logout -->
+        <ellipse cx="450" cy="700" rx="100" ry="24" fill="#fff" stroke="#1a3c6e" stroke-width="1.5"/>
+        <text x="450" y="705" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">Logout</text>
+
+        <!-- ===== ASSOCIATIONS (Lines) ===== -->
+
+        <!-- Kasir → Login -->
+        <line x1="78" y1="150" x2="348" y2="75" stroke="#1a3c6e" stroke-width="1.3"/>
+        <!-- Kasir → Transaksi Penjualan -->
+        <line x1="78" y1="178" x2="238" y2="155" stroke="#1a3c6e" stroke-width="1.3"/>
+        <!-- Kasir → Kelola Produk -->
+        <line x1="78" y1="185" x2="238" y2="222" stroke="#1a3c6e" stroke-width="1.3"/>
+        <!-- Kasir → Manajemen Inventori -->
+        <line x1="78" y1="192" x2="238" y2="295" stroke="#1a3c6e" stroke-width="1.3"/>
+        <!-- Kasir → Logout -->
+        <line x1="78" y1="210" x2="348" y2="700" stroke="#1a3c6e" stroke-width="1.3"/>
+
+        <!-- Pemilik → Login -->
+        <line x1="78" y1="388" x2="348" y2="85" stroke="#1a3c6e" stroke-width="1.3"/>
+        <!-- Pemilik → Laporan Penjualan -->
+        <line x1="78" y1="400" x2="328" y2="455" stroke="#1a3c6e" stroke-width="1.3"/>
+        <!-- Pemilik → Laporan Keuangan -->
+        <line x1="78" y1="408" x2="328" y2="530" stroke="#1a3c6e" stroke-width="1.3"/>
+        <!-- Pemilik → Manajemen Karyawan -->
+        <line x1="78" y1="415" x2="328" y2="605" stroke="#1a3c6e" stroke-width="1.3"/>
+        <!-- Pemilik → Toko Online -->
+        <line x1="78" y1="395" x2="468" y2="295" stroke="#1a3c6e" stroke-width="1.3"/>
+        <!-- Pemilik → Kelola CRM -->
+        <line x1="78" y1="402" x2="238" y2="370" stroke="#1a3c6e" stroke-width="1.3"/>
+        <!-- Pemilik → Logout -->
+        <line x1="78" y1="420" x2="348" y2="700" stroke="#1a3c6e" stroke-width="1.3"/>
+
+        <!-- Pelanggan → Toko Online -->
+        <line x1="78" y1="618" x2="468" y2="305" stroke="#059669" stroke-width="1.3"/>
+        <!-- Pelanggan → Order Online -->
+        <line x1="78" y1="625" x2="468" y2="375" stroke="#059669" stroke-width="1.3"/>
+
+        <!-- Admin → Login -->
+        <line x1="822" y1="398" x2="552" y2="85" stroke="#e8820c" stroke-width="1.3"/>
+        <!-- Admin → Kelola Pengguna -->
+        <line x1="822" y1="400" x2="732" y2="530" stroke="#e8820c" stroke-width="1.3"/>
+        <!-- Admin → Manajemen Karyawan -->
+        <line x1="822" y1="408" x2="572" y2="605" stroke="#e8820c" stroke-width="1.3"/>
+        <!-- Admin → Laporan Keuangan -->
+        <line x1="822" y1="415" x2="572" y2="530" stroke="#e8820c" stroke-width="1.3"/>
+        <!-- Admin → Logout -->
+        <line x1="822" y1="420" x2="552" y2="700" stroke="#e8820c" stroke-width="1.3"/>
+
+        <!-- extend: Transaksi → Pembayaran Digital -->
+        <line x1="462" y1="145" x2="498" y2="145" stroke="#64748b" stroke-width="1.2" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+        <text x="480" y="138" text-anchor="middle" font-size="9" fill="#64748b">«extend»</text>
+
+        <!-- Arrow marker -->
+        <defs>
+          <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#64748b"/>
+          </marker>
+        </defs>
+
+        <!-- ===== LEGEND ===== -->
+        <rect x="175" y="738" width="500" height="30" rx="6" fill="#fff" stroke="#dde3ed"/>
+        <circle cx="200" cy="753" r="7" fill="none" stroke="#1a3c6e" stroke-width="1.5"/>
+        <text x="212" y="757" font-size="10" fill="#64748b">Kasir / Pemilik</text>
+        <circle cx="300" cy="753" r="7" fill="none" stroke="#e8820c" stroke-width="1.5"/>
+        <text x="312" y="757" font-size="10" fill="#64748b">Admin</text>
+        <circle cx="370" cy="753" r="7" fill="none" stroke="#059669" stroke-width="1.5"/>
+        <text x="382" y="757" font-size="10" fill="#64748b">Pelanggan</text>
+        <line x1="450" y1="753" x2="475" y2="753" stroke="#64748b" stroke-dasharray="4,2"/>
+        <text x="480" y="757" font-size="10" fill="#64748b">«extend»</text>
+        <ellipse cx="570" cy="753" rx="40" ry="10" fill="#edf0f8" stroke="#1a3c6e" stroke-dasharray="3,2"/>
+        <text x="570" y="757" text-anchor="middle" font-size="9" fill="#1a3c6e">Opsional UC</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
 
 <div class="div"></div>
 
